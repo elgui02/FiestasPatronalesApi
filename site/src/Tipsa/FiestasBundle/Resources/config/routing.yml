@@ -1,0 +1,17 @@
+fiestas_homepage:
+    path:     /
+    defaults: { _controller: FiestasBundle:Default:index }
+
+fiestas_fiesta_patronal:
+    resource: "@FiestasBundle/Controller/FiestaPatronalController.php"
+    type:     annotation
+
+fiestas_departamento:
+    resource: "@FiestasBundle/Controller/DepartamentoController.php"
+    type:     annotation
+
+fiestas_municipio:
+    resource: "@FiestasBundle/Controller/MunicipioController.php"
+    type:     annotation
+
+

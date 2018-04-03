@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fiestapatronal</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idfiestapatronal</th>
+                <td>{{ fiestaPatronal.idFiestaPatronal }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ fiestaPatronal.Nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ fiestaPatronal.Descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Latitud</th>
+                <td>{{ fiestaPatronal.Latitud }}</td>
+            </tr>
+            <tr>
+                <th>Longitud</th>
+                <td>{{ fiestaPatronal.Longitud }}</td>
+            </tr>
+            <tr>
+                <th>Municipio_id</th>
+                <td>{{ fiestaPatronal.Municipioid }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fiestapatronal_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fiestapatronal_edit', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

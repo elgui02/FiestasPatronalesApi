@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fiestapatronals list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idfiestapatronal</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Municipio_id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fiestaPatronal in fiestaPatronals %}
+            <tr>
+                <td><a href="{{ path('fiestapatronal_show', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">{{ fiestaPatronal.idFiestaPatronal }}</a></td>
+                <td>{{ fiestaPatronal.Nombre }}</td>
+                <td>{{ fiestaPatronal.Descripcion }}</td>
+                <td>{{ fiestaPatronal.Latitud }}</td>
+                <td>{{ fiestaPatronal.Longitud }}</td>
+                <td>{{ fiestaPatronal.Municipioid }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fiestapatronal_show', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fiestapatronal_edit', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fiestapatronal_new') }}">Create a new fiestaPatronal</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+fiestas:
+    resource: "@FiestasBundle/Resources/config/routing.yml"
+    prefix:   /
+
+    #tipsa_fiestas:
+    #resource: "@TipsaFiestasBundle/Resources/config/routing.yml"
+    #prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
