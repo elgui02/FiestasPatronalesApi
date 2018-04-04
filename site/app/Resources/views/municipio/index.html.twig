@@ -1,45 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Municipios list</h1>
+<h2>Lista de Municipios</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Municipio</th>
-                <th>Latitud</th>
-                <th>Longitud</th>
-                <th>Departamento_id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Municipio</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Departamento</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for municipio in municipios %}
-            <tr>
-                <td><a href="{{ path('municipio_show', { 'id': municipio.id }) }}">{{ municipio.id }}</a></td>
-                <td>{{ municipio.Municipio }}</td>
-                <td>{{ municipio.Latitud }}</td>
-                <td>{{ municipio.Longitud }}</td>
-                <td>{{ municipio.Departamentoid }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ municipio.Municipio }}</td>
+            <td>{{ municipio.Latitud }}</td>
+            <td>{{ municipio.Longitud }}</td>
+            <td>{{ municipio.Departamento.departamento }}</td>
+            <td>
+                <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">show</a><br />
+                <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">edit</a>
+            </td>
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('municipio_new') }}">Create a new municipio</a>
-        </li>
-    </ul>
+<a href="{{ path('municipio_new') }}">Create a new municipio</a>
 {% endblock %}
