@@ -12,12 +12,15 @@ namespace Tipsa\FiestasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Tipsa\FiestasBundle\Entity\Departamento
  *
  * @ORM\Entity()
  * @ORM\Table(name="Departamento")
+ * @ExclusionPolicy("all")
  */
 class Departamento
 {
@@ -25,11 +28,13 @@ class Departamento
      * @ORM\Id
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Expose
      */
     protected $Departamento;
 

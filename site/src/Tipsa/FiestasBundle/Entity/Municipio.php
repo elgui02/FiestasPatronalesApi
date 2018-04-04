@@ -34,12 +34,12 @@ class Municipio
     protected $Municipio;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     protected $Latitud;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="float")
      */
     protected $Longitud;
 

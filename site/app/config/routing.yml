@@ -9,3 +9,27 @@ fiestas:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+departamento_all:
+    path:  /rest/departamentos
+    defaults: { _controller: FiestasBundle:Rest:all, _format: json }
+    methods: [GET]
+
+departamento_departamento:
+    path:  /rest/departamentos/{id}
+    defaults: { _controller: FiestasBundle:Rest:departamento, _format: json }
+    methods: [GET]
+
+municipio_departamento:
+    path:  /rest/departamentos/{id}/municipios
+    defaults: { _controller: FiestasBundle:Rest:municipios, _format: json }
+    methods: [GET]
+
+municipio_municipio:
+    path:  /rest/municipio/{id}
+    defaults: { _controller: FiestasBundle:Rest:municipio, _format: json }
+    methods: [GET]
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
