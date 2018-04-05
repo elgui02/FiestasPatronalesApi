@@ -1,0 +1,34 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <span class="login100-form-title p-b-32">
+                Account Login
+            </span>
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="login100-form validate-form flex-sb flex-w">
+                {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+
+                <label for="username" class="txt1 p-b-11">{{ 'security.login.username'|trans }}</label>
+                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+                <input type="text" class="input100" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+                </div>
+
+                <label for="password" class="txt1 p-b-11">{{ 'security.login.password'|trans }}</label>
+                <div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+                <input type="password" class="input100" id="password" name="_password" required="required" autocomplete="current-password" />
+                </div>
+
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </form>
+        </div>
+    </div>
+</div>
