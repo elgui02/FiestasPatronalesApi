@@ -12,7 +12,7 @@ framework:
     templating:
         engines: ['twig']
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -73,3 +73,11 @@ fos_rest:
         default_format: json
 
 nelmio_api_doc: ~
+# app/config/config.yml
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: Tipsa\FiestasBundle\Entity\Usuario
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"

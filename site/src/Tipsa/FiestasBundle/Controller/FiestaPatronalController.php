@@ -48,7 +48,7 @@ class FiestaPatronalController extends Controller
             $em->persist($fiestaPatronal);
             $em->flush();
 
-            return $this->redirectToRoute('fiestapatronal_show', array('idFiestaPatronal' => $fiestaPatronal->getIdfiestapatronal()));
+            return $this->redirectToRoute('fiestapatronal_show', array('id' => $fiestaPatronal->getId()));
         }
 
         return $this->render('fiestapatronal/new.html.twig', array(
@@ -60,7 +60,7 @@ class FiestaPatronalController extends Controller
     /**
      * Finds and displays a fiestaPatronal entity.
      *
-     * @Route("/{idFiestaPatronal}", name="fiestapatronal_show")
+     * @Route("/{id}", name="fiestapatronal_show")
      * @Method("GET")
      */
     public function showAction(FiestaPatronal $fiestaPatronal)
@@ -76,7 +76,7 @@ class FiestaPatronalController extends Controller
     /**
      * Displays a form to edit an existing fiestaPatronal entity.
      *
-     * @Route("/{idFiestaPatronal}/edit", name="fiestapatronal_edit")
+     * @Route("/{id}/edit", name="fiestapatronal_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, FiestaPatronal $fiestaPatronal)
@@ -88,7 +88,7 @@ class FiestaPatronalController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('fiestapatronal_edit', array('idFiestaPatronal' => $fiestaPatronal->getIdfiestapatronal()));
+            return $this->redirectToRoute('fiestapatronal_edit', array('id' => $fiestaPatronal->getId()));
         }
 
         return $this->render('fiestapatronal/edit.html.twig', array(
@@ -101,7 +101,7 @@ class FiestaPatronalController extends Controller
     /**
      * Deletes a fiestaPatronal entity.
      *
-     * @Route("/{idFiestaPatronal}", name="fiestapatronal_delete")
+     * @Route("/{id}", name="fiestapatronal_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, FiestaPatronal $fiestaPatronal)
@@ -128,7 +128,7 @@ class FiestaPatronalController extends Controller
     private function createDeleteForm(FiestaPatronal $fiestaPatronal)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('fiestapatronal_delete', array('idFiestaPatronal' => $fiestaPatronal->getIdfiestapatronal())))
+            ->setAction($this->generateUrl('fiestapatronal_delete', array('id' => $fiestaPatronal->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -13,7 +13,7 @@ class FiestaPatronalType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Nombre')->add('Descripcion')->add('Latitud')->add('Longitud')->add('Municipio_id')->add('municipio');
+        $builder->add('Nombre')->add('Descripcion')->add('Latitud')->add('Longitud')->add('municipio');
     }/**
      * {@inheritdoc}
      */

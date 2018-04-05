@@ -25,7 +25,7 @@ class FiestaPatronal
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $idFiestaPatronal;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=250)
@@ -68,9 +68,9 @@ class FiestaPatronal
      * @param integer $idFiestaPatronal
      * @return \Tipsa\FiestasBundle\Entity\FiestaPatronal
      */
-    public function setIdFiestaPatronal($idFiestaPatronal)
+    public function setId($id)
     {
-        $this->idFiestaPatronal = $idFiestaPatronal;
+        $this->id = $id;
 
         return $this;
     }
@@ -80,9 +80,9 @@ class FiestaPatronal
      *
      * @return integer
      */
-    public function getIdFiestaPatronal()
+    public function getId()
     {
-        return $this->idFiestaPatronal;
+        return $this->id;
     }
 
     /**
@@ -225,6 +225,6 @@ class FiestaPatronal
 
     public function __sleep()
     {
-        return array('idFiestaPatronal', 'Nombre', 'Descripcion', 'Latitud', 'Longitud', 'Municipio_id');
+        return array('id', 'Nombre', 'Descripcion', 'Latitud', 'Longitud', 'Municipio_id');
     }
 }

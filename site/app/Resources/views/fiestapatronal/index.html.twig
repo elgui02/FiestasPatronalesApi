@@ -17,8 +17,8 @@
             <td>{{ fiestaPatronal.Nombre }}</td>
             <td>{{ fiestaPatronal.Municipio.Departamento.departamentod }} - {{ fiestaPatronal.Municipio.municipio}}</td>
             <td>
-                <a href="{{ path('fiestapatronal_show', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">show</a><br />
-                <a href="{{ path('fiestapatronal_edit', { 'idFiestaPatronal': fiestaPatronal.idFiestaPatronal }) }}">edit</a>
+                <a href="{{ path('fiestapatronal_show', { 'id': fiestaPatronal.id }) }}">show</a><br />
+                <a href="{{ path('fiestapatronal_edit', { 'id': fiestaPatronal.id }) }}">edit</a>
             </td>
         </tr>
         {% endfor %}
