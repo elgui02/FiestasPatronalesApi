@@ -7,7 +7,7 @@
     <div class="container-login100">
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
             <span class="login100-form-title p-b-32">
-                Account Login
+                Iniciar sesión
             </span>
             <form action="{{ path("fos_user_security_check") }}" method="post" class="login100-form validate-form flex-sb flex-w">
                 {% if csrf_token %}
@@ -23,11 +23,9 @@
                 <div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
                 <input type="password" class="input100" id="password" name="_password" required="required" autocomplete="current-password" />
                 </div>
-
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <div class="container-login100-form-btn">
+                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="login100-form-btn"/>
+                </div>
             </form>
         </div>
     </div>
