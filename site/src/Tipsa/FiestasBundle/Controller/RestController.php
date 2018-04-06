@@ -45,7 +45,7 @@ class RestController  extends Controller
     }
 
     /**
-     * Retorna un departamento por medio de su id
+     * Retorna un departamento por medio de su {id}
      *
      * @ApiDoc(
      *  section="Departamentos",
@@ -80,7 +80,7 @@ class RestController  extends Controller
     }
 
     /**
-     * Retorna una lista de municipios por medio del id del departamento
+     * Retorna una lista de municipios por medio del {id} del departamento
      *
      * @ApiDoc(
      *  section="Municipios",
@@ -103,7 +103,6 @@ class RestController  extends Controller
      *  }
      * )
      */
-
     public function municipiosAction($id)
     {    
         $em = $this->getDoctrine()->getManager();
@@ -117,6 +116,31 @@ class RestController  extends Controller
         return new Response($serializer->serialize($municipios, 'json'));
     }
 
+
+    /**
+     * Retorna un municipio por medio su {id}
+     *
+     * @ApiDoc(
+     *  section="Municipios",
+     *  description="Obtener municipio",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="*",
+     *          "description"="municipio id"
+     *      }
+     *  },
+     *  output="Tipsa\FiestasBundle\Entity\Municipio",
+     *  statusCodes={
+     *         200="Cuando no existe error"
+     *  },
+     *  tags={
+     *   "stable" = "#4A7023",
+     *   "necesita parametros" = "#ff0000"
+     *  }
+     * )
+     */    
     public function municipioAction($id)
     {    
         $em = $this->getDoctrine()->getManager();
