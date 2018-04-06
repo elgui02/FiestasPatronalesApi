@@ -1,21 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Fiestapatronal</h1>
+    <h2>{{ fiestaPatronal.Nombre }}</h2>
+    <h2><small>{{fiestaPatronal.Municipio}}</small></h2>
 
     <table>
         <tbody>
             <tr>
-                <th>Idfiestapatronal</th>
-                <td>{{ fiestaPatronal.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ fiestaPatronal.Nombre }}</td>
-            </tr>
-            <tr>
                 <th>Descripcion</th>
-                <td>{{ fiestaPatronal.Descripcion }}</td>
+                <td>{{ fiestaPatronal.Descripcion | raw }}</td>
             </tr>
             <tr>
                 <th>Latitud</th>
@@ -25,14 +18,10 @@
                 <th>Longitud</th>
                 <td>{{ fiestaPatronal.Longitud }}</td>
             </tr>
-            <tr>
-                <th>Municipio_id</th>
-                <td>{{ fiestaPatronal.Municipioid }}</td>
-            </tr>
         </tbody>
     </table>
 
-    <ul>
+    <ul class="pull-left">
         <li>
             <a href="{{ path('fiestapatronal_index') }}">Back to the list</a>
         </li>
@@ -41,7 +30,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="btn btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -5,6 +5,7 @@ namespace Tipsa\FiestasBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class FiestaPatronalType extends AbstractType
 {
@@ -13,7 +14,19 @@ class FiestaPatronalType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Nombre')->add('Descripcion')->add('Latitud')->add('Longitud')->add('municipio');
+        $builder
+            ->add('Nombre')
+            ->add('Descripcion')
+            ->add('FechaInicio', DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ))
+            ->add('FechaFin', DateType::class, array(
+                'widget' => 'single_text',
+            ))
+            ->add('Latitud')
+            ->add('Longitud')
+            ->add('municipio');
     }/**
      * {@inheritdoc}
      */

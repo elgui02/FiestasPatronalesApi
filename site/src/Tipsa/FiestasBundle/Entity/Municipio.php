@@ -243,4 +243,9 @@ class Municipio
     {
         return array('id', 'Municipio', 'Latitud', 'Longitud', 'Departamento_id');
     }
+
+    public function __toString()
+    {
+        return $this->getDepartamento()->getDepartamento().' - '.$this->Municipio;
+    }
 }

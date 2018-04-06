@@ -1,22 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Departamento</h1>
+    <h2>{{ departamento.Departamento }}</h2>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ departamento.id }}</td>
-            </tr>
-            <tr>
-                <th>Departamento</th>
-                <td>{{ departamento.Departamento }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h3>Lista de Municipios</h3>
 
-    <ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Municipio</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for municipio in departamento.municipios %}
+        <tr>
+            <td>{{ municipio.Municipio }}</td>
+            <td>{{ municipio.Latitud }}</td>
+            <td>{{ municipio.Longitud }}</td>
+            <td>
+                <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">show</a><br />
+                <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    <ul class="pull-left">
         <li>
             <a href="{{ path('departamento_index') }}">Back to the list</a>
         </li>

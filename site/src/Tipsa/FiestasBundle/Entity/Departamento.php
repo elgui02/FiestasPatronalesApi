@@ -135,4 +135,9 @@ class Departamento
     {
         return array('id', 'Departamento');
     }
+    
+    public function __toString()
+    {
+        return $this->Departamento;
+    }
 }

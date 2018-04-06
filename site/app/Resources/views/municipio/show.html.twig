@@ -1,34 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Municipio</h1>
+<h2>{{ municipio.Municipio }} <small>{{ municipio.Departamento }}</small></h2>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ municipio.id }}</td>
-            </tr>
-            <tr>
-                <th>Municipio</th>
-                <td>{{ municipio.Municipio }}</td>
-            </tr>
-            <tr>
-                <th>Latitud</th>
-                <td>{{ municipio.Latitud }}</td>
-            </tr>
-            <tr>
-                <th>Longitud</th>
-                <td>{{ municipio.Longitud }}</td>
-            </tr>
-            <tr>
-                <th>Departamento_id</th>
-                <td>{{ municipio.Departamentoid }}</td>
-            </tr>
-        </tbody>
-    </table>
+<table>
+    <tbody>
+        <tr>
+            <th>Latitud</th>
+            <td>{{ municipio.Latitud }}</td>
+        </tr>
+        <tr>
+            <th>Longitud</th>
+            <td>{{ municipio.Longitud }}</td>
+        </tr>
+    </tbody>
+</table>
+<h3>Lista de Fiestas patronales</h3>
 
-    <ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th width="20%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fiestaPatronal in municipio.fiestaPatronals %}
+        <tr>
+            <td>{{ fiestaPatronal.Nombre }}</td>
+            <td>
+                <a href="{{ path('fiestapatronal_show', { 'id': fiestaPatronal.id }) }}">show</a><br />
+                <a href="{{ path('fiestapatronal_edit', { 'id': fiestaPatronal.id }) }}">edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    <ul class="pull-left">
         <li>
             <a href="{{ path('municipio_index') }}">Back to the list</a>
         </li>
