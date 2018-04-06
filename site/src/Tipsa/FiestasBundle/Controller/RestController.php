@@ -18,14 +18,15 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 class RestController  extends Controller
 {
     /**
-     * Response departament list
+     * Retorna lista de departamentos
      *
      * @ApiDoc(
      *  section="Departamentos",
      *  resource=true,
-     *  description="Response deparament list",
+     *  description="Retorna la lista de todos los departamentos",
+     *  output="Tipsa\FiestasBundle\Entity\Departamento",
      *  statusCodes={
-     *         200="Returned when successful"
+     *         200="Cuando no existe error"
      *  },
      *  tags={
      *   "stable" = "#4A7023",
@@ -44,11 +45,11 @@ class RestController  extends Controller
     }
 
     /**
-     * Response with the departament that has {departament} for id
+     * Retorna un departamento por medio de su id
      *
      * @ApiDoc(
      *  section="Departamentos",
-     *  description="Get a departament",
+     *  description="Obtener departamento",
      *  requirements={
      *      {
      *          "name"="id",
@@ -59,11 +60,11 @@ class RestController  extends Controller
      *  },
      *  output="Tipsa\FiestasBundle\Entity\Departamento",
      *  statusCodes={
-     *         200="Returned when successful"
+     *         200="Cuando no existe error"
      *  },
      *  tags={
      *   "stable" = "#4A7023",
-     *   "need validations" = "#ff0000"
+     *   "necesita parametros" = "#ff0000"
      *  }
      * )
      */
@@ -77,6 +78,31 @@ class RestController  extends Controller
 
         return new Response($serializer->serialize($departamento, 'json'));
     }
+
+    /**
+     * Retorna una lista de municipios por medio del id del departamento
+     *
+     * @ApiDoc(
+     *  section="Municipios",
+     *  description="Obtener lista de municipios por departamento",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="*",
+     *          "description"="departamento id"
+     *      }
+     *  },
+     *  output="Tipsa\FiestasBundle\Entity\Municipio",
+     *  statusCodes={
+     *         200="Cuando no existe error"
+     *  },
+     *  tags={
+     *   "stable" = "#4A7023",
+     *   "necesita parametros" = "#ff0000"
+     *  }
+     * )
+     */
 
     public function municipiosAction($id)
     {    

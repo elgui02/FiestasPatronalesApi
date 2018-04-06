@@ -11,12 +11,15 @@
 namespace Tipsa\FiestasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Tipsa\FiestasBundle\Entity\FiestaPatronal
  *
  * @ORM\Entity()
  * @ORM\Table(name="FiestaPatronal", indexes={@ORM\Index(name="fk_FiestaPatronal_Municipio1_idx", columns={"municipio_id"})})
+ * @ExclusionPolicy("all")
  */
 class FiestaPatronal
 {
@@ -24,26 +27,31 @@ class FiestaPatronal
      * @ORM\Id
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Expose
      */
     protected $Nombre;
 
     /**
      * @ORM\Column(type="text", length=500, nullable=true)
+     * @Expose
      */
     protected $Descripcion;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Expose
      */
     protected $Latitud;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Expose
      */
     protected $Longitud;
 
@@ -54,17 +62,20 @@ class FiestaPatronal
 
     /**
      * @ORM\Column(type="date")
+     * @Expose
      */
     protected $FechaInicio;
 
     /**
      * @ORM\Column(type="date")
+     * @Expose
      */
     protected $FechaFin;
 
     /**
      * @ORM\ManyToOne(targetEntity="Municipio", inversedBy="fiestaPatronals")
      * @ORM\JoinColumn(name="municipio_id", referencedColumnName="id", nullable=false)
+     * @Expose
      */
     protected $municipio;
 

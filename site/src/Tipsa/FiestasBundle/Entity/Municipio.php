@@ -12,12 +12,15 @@ namespace Tipsa\FiestasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Tipsa\FiestasBundle\Entity\Municipio
  *
  * @ORM\Entity()
  * @ORM\Table(name="Municipio", indexes={@ORM\Index(name="fk_Municipio_Departamento_idx", columns={"departamento_id"})})
+ * @ExclusionPolicy("all")
  */
 class Municipio
 {
@@ -25,6 +28,7 @@ class Municipio
      * @ORM\Id
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
@@ -35,11 +39,13 @@ class Municipio
 
     /**
      * @ORM\Column(type="float")
+     * @Expose
      */
     protected $Latitud;
 
     /**
      * @ORM\Column(type="float")
+     * @Expose
      */
     protected $Longitud;
 
@@ -57,6 +63,7 @@ class Municipio
     /**
      * @ORM\ManyToOne(targetEntity="Departamento", inversedBy="municipios")
      * @ORM\JoinColumn(name="departamento_id", referencedColumnName="id", nullable=false)
+     * @Expose
      */
     protected $departamento;
 
