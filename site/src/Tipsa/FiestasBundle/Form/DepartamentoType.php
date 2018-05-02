@@ -13,7 +13,9 @@ class DepartamentoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Departamento');
+        $builder->add('Departamento',null,array(
+            'attr' => array('class' => 'form-control')
+        ));
     }/**
      * {@inheritdoc}
      */

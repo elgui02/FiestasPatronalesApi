@@ -3,6 +3,7 @@
 namespace Tipsa\FiestasBundle\Controller;
 
 use Tipsa\FiestasBundle\Entity\Municipio;
+use Tipsa\FiestasBundle\Entity\Departamento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,34 @@ class MunicipioController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Creates a new municipio entity setting a departamento.
+     *
+     * @Route("/{id}/new/", name="municipio_departamento_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newMunicipioAction(Departamento $departamento, Request $request)
+    {
+        $municipio = new Municipio();
+        $municipio->setDepartamento($departamento);
+        $form = $this->createForm('Tipsa\FiestasBundle\Form\MunicipioType', $municipio);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($municipio);
+            $em->flush();
+
+            return $this->redirectToRoute('municipio_show', array('id' => $municipio->getId()));
+        }
+
+        return $this->render('municipio/new.html.twig', array(
+            'municipio' => $municipio,
+            'form' => $form->createView(),
+        ));
+    }
+
 
     /**
      * Finds and displays a municipio entity.

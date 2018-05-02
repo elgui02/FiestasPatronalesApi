@@ -15,13 +15,13 @@
         <tr>
             <td>{{ departamento.Departamento }}</td>
             <td>
-                <a href="{{ path('departamento_show', { 'id': departamento.id }) }}">show</a><br />
-                <a href="{{ path('departamento_edit', { 'id': departamento.id }) }}">edit</a>
+                <a href="{{ path('departamento_show', { 'id': departamento.id }) }}">ver</a><br />
+                <a href="{{ path('departamento_edit', { 'id': departamento.id }) }}">editar</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a href="{{ path('departamento_new') }}">Create a new departamento</a>
+<a href="{{ path('departamento_new') }}" class="btn btn-primary pull-left">Nuevo departamento</a>
 {% endblock %}

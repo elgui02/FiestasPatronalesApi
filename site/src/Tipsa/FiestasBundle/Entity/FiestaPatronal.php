@@ -64,13 +64,7 @@ class FiestaPatronal
      * @ORM\Column(type="date")
      * @Expose
      */
-    protected $FechaInicio;
-
-    /**
-     * @ORM\Column(type="date")
-     * @Expose
-     */
-    protected $FechaFin;
+    protected $Fecha;
 
     /**
      * @ORM\ManyToOne(targetEntity="Municipio", inversedBy="fiestaPatronals")
@@ -227,9 +221,9 @@ class FiestaPatronal
      * @param \DateTime $FechaInicio
      * @return \Tipsa\FiestasBundle\Entity\FiestaPatronal
      */
-    public function setFechaInicio($FechaInicio)
+    public function setFecha($Fecha)
     {
-        $this->FechaInicio = $FechaInicio;
+        $this->Fecha = $Fecha;
 
         return $this;
     }
@@ -239,33 +233,11 @@ class FiestaPatronal
      *
      * @return \DateTime
      */
-    public function getFechaInicio()
+    public function getFecha()
     {
-        return $this->FechaInicio;
+        return $this->Fecha;
     }
 
-    /**
-     * Set the value of FechaFin.
-     *
-     * @param \DateTime $FechaFin
-     * @return \Tipsa\FiestasBundle\Entity\FiestaPatronal
-     */
-    public function setFechaFin($FechaFin)
-    {
-        $this->FechaFin = $FechaFin;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of FechaFin.
-     *
-     * @return \DateTime
-     */
-    public function getFechaFin()
-    {
-        return $this->FechaFin;
-    }
 
     /**
      * Set Municipio entity (many to one).
@@ -292,6 +264,6 @@ class FiestaPatronal
 
     public function __sleep()
     {
-        return array('id', 'Nombre', 'Descripcion', 'Latitud', 'Longitud', 'Municipio_id', 'FechaInicio', 'FechaFin');
+        return array('id', 'Nombre', 'Descripcion', 'Latitud', 'Longitud', 'Municipio_id', 'Fecha');
     }
 }

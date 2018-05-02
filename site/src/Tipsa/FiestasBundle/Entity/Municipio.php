@@ -38,13 +38,13 @@ class Municipio
     protected $Municipio;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      * @Expose
      */
     protected $Latitud;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      * @Expose
      */
     protected $Longitud;

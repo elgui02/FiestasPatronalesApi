@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Departamento creation</h1>
+    <h2>Nuevo departamento</h2>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Guardar" class="btn btn-primary pull-right" />
     {{ form_end(form) }}
 
-    <ul>
+    <ul class="pull-left">
         <li>
-            <a href="{{ path('departamento_index') }}">Back to the list</a>
+            <a href="{{ path('departamento_index') }}">Regresar al listado</a>
         </li>
     </ul>
 {% endblock %}

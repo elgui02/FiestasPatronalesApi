@@ -3,6 +3,7 @@
 namespace Tipsa\FiestasBundle\Controller;
 
 use Tipsa\FiestasBundle\Entity\FiestaPatronal;
+use Tipsa\FiestasBundle\Entity\Municipio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -56,7 +57,33 @@ class FiestaPatronalController extends Controller
             'form' => $form->createView(),
         ));
     }
+    
+    /**
+     * Creates a new fiestaPatronal from Municipio entity.
+     *
+     * @Route("/{id}/new", name="fiestapatronal_municipio_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newMunicipioAction(Municipio $municipio, Request $request)
+    {
+        $fiestaPatronal = new Fiestapatronal();
+        $fiestaPatronal->setMunicipio($municipio);
+        $form = $this->createForm('Tipsa\FiestasBundle\Form\FiestaPatronalType', $fiestaPatronal);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($fiestaPatronal);
+            $em->flush();
+
+            return $this->redirectToRoute('fiestapatronal_show', array('id' => $fiestaPatronal->getId()));
+        }
+
+        return $this->render('fiestapatronal/new.html.twig', array(
+            'fiestaPatronal' => $fiestaPatronal,
+            'form' => $form->createView(),
+        ));
+    }
     /**
      * Finds and displays a fiestaPatronal entity.
      *

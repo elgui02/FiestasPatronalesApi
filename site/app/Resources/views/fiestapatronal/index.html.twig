@@ -17,13 +17,13 @@
             <td>{{ fiestaPatronal.Nombre }}</td>
             <td>{{ fiestaPatronal.Municipio.Departamento.departamentod }} - {{ fiestaPatronal.Municipio.municipio}}</td>
             <td>
-                <a href="{{ path('fiestapatronal_show', { 'id': fiestaPatronal.id }) }}">show</a><br />
-                <a href="{{ path('fiestapatronal_edit', { 'id': fiestaPatronal.id }) }}">edit</a>
+                <a href="{{ path('fiestapatronal_show', { 'id': fiestaPatronal.id }) }}">ver</a><br />
+                <a href="{{ path('fiestapatronal_edit', { 'id': fiestaPatronal.id }) }}">editar</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a href="{{ path('fiestapatronal_new') }}">Create a new fiestaPatronal</a>
+<a href="{{ path('fiestapatronal_new') }}" class="btn btn-primary pull-left">Nueva fiesta patronal</a>
 {% endblock %}

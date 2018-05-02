@@ -14,6 +14,7 @@
     <link href="{{ asset('bundles/fiestas/css/prettyPhoto.css')}}" rel="stylesheet">
     <link href="{{ asset('bundles/fiestas/css/main.css')}}" rel="stylesheet">
     <link href="{{ asset('bundles/fiestas/css/responsive.css')}}" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="{{ asset('bundles/fiestas/js/html5shiv.js')}}"></script>
     <script src="{{ asset('bundles/fiestas/js/respond.min.js')}}"></script>
@@ -99,6 +100,12 @@
     <script src="{{ asset('bundles/fiestas/js/jquery.isotope.min.js')}}"></script>
     <script src="{{ asset('bundles/fiestas/js/main.js')}}"></script>
     <script src="{{ asset('bundles/fiestas/js/wow.min.js')}}"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        } );
+    </script>
     {% block javascripts %}{% endblock %}
 </body>
 </html>

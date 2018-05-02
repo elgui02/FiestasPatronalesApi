@@ -13,7 +13,19 @@ class MunicipioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Municipio')->add('Latitud')->add('Longitud')->add('departamento');
+        $builder
+            ->add('Municipio',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('Latitud',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('Longitud',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('departamento',null,array(
+                'attr' => array('class' => 'form-control')
+            ));
     }/**
      * {@inheritdoc}
      */

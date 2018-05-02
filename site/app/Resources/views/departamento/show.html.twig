@@ -21,8 +21,8 @@
             <td>{{ municipio.Latitud }}</td>
             <td>{{ municipio.Longitud }}</td>
             <td>
-                <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">show</a><br />
-                <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">edit</a>
+                <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">ver</a><br />
+                <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">editar</a>
             </td>
         </tr>
         {% endfor %}
@@ -31,15 +31,13 @@
 
     <ul class="pull-left">
         <li>
-            <a href="{{ path('departamento_index') }}">Back to the list</a>
+            <a href="{{ path('departamento_index') }}">Regresar al listado"</a>
         </li>
         <li>
-            <a href="{{ path('departamento_edit', { 'id': departamento.id }) }}">Edit</a>
+            <a href="{{ path('departamento_edit', { 'id': departamento.id }) }}" class="btn btn-primary">Editar</a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('municipio_departamento_new', { 'id': departamento.id }) }}" class="btn btn-success">Nuevo municipio</a>
         </li>
     </ul>
 {% endblock %}

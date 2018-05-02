@@ -15,18 +15,26 @@ class FiestaPatronalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Nombre')
-            ->add('Descripcion')
-            ->add('FechaInicio', DateType::class, array(
+            ->add('Nombre',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('Descripcion',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('Fecha', DateType::class, array(
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
+                'attr' => array('class' => 'form-control')
             ))
-            ->add('FechaFin', DateType::class, array(
-                'widget' => 'single_text',
+            ->add('Latitud',null,array(
+                'attr' => array('class' => 'form-control')
             ))
-            ->add('Latitud')
-            ->add('Longitud')
-            ->add('municipio');
+            ->add('Longitud',null,array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('municipio',null,array(
+                'attr' => array('class' => 'form-control')
+            ));
     }/**
      * {@inheritdoc}
      */
