@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use \Statickidz\GoogleTranslate;
 
 class RestController  extends Controller
 {
@@ -152,4 +153,75 @@ class RestController  extends Controller
         return new Response($serializer->serialize($municipio, 'json'));
     }
 
+    /**
+     * Retorna las fiestas patronales del municipio por medio su {id}
+     *
+     * @ApiDoc(
+     *  section="FiestasPatronales", 
+     *  description="Obtener fiesta patronal por municipio",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="*",
+     *          "description"="municipio id"
+     *      }
+     *  },
+     *  output="Tipsa\FiestasBundle\Entity\FiestaPatronal",
+     *  statusCodes={
+     *         200="Cuando no existe error"
+     *  },
+     *  tags={
+     *   "stable" = "#4A7023",
+     *   "necesita parametros" = "#ff0000"
+     *  }
+     * )
+     */    
+    public function fiestaPatronalAction(Municipio $municipio)
+    {    
+        $em = $this->getDoctrine()->getManager();
+
+        $fiesta = $em->getRepository('FiestasBundle:FiestaPatronal')->findBy(array(
+            'municipio_id' => $municipio->getId()
+        ));
+
+        $serializer = $this->container->get('jms_serializer');
+
+        return new Response($serializer->serialize($fiesta, 'json'));
+    }
+
+    /**
+     * Retorna las fiestas patronales del dia
+     *
+     * @ApiDoc(
+     *  section="FiestasPatronales", 
+     *  description="Obtener fiestas patronales del dia",
+     *  output="Tipsa\FiestasBundle\Entity\FiestaPatronal",
+     *  statusCodes={
+     *         200="Cuando no existe error"
+     *  },
+     *  tags={
+     *   "stable" = "#4A7023",
+     *  }
+     * )
+     */    
+    public function fiestaPatronalHoyAction()
+    {    
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findAll();
+        $fiesta = array();
+        $source = 'es';
+        $target = 'nl';
+        $trans = new GoogleTranslate();
+        
+        foreach($entities as $entity)
+        {
+            $entity->setNombre($trans->translate($source, $target, $entity->getNombre()));
+            $fiesta[] = $entity;
+        }
+        $serializer = $this->container->get('jms_serializer');
+
+        return new Response($serializer->serialize($fiesta, 'json'));
+    }
 }

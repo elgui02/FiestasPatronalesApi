@@ -34,6 +34,7 @@ class Municipio
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Expose
      */
     protected $Municipio;
 
