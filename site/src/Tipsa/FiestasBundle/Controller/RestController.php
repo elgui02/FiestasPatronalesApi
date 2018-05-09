@@ -205,19 +205,20 @@ class RestController  extends Controller
      *  }
      * )
      */    
-    public function fiestaPatronalHoyAction()
+    public function fiestaPatronalHoyAction($lang)
     {    
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findAll();
         $fiesta = array();
         $source = 'es';
-        $target = 'nl';
+        $target = $lang;
         $trans = new GoogleTranslate();
         
         foreach($entities as $entity)
         {
             $entity->setNombre($trans->translate($source, $target, $entity->getNombre()));
+            $entity->setDescripcion($trans->translate($source, $target, $entity->getDescripcion()));
             $fiesta[] = $entity;
         }
         $serializer = $this->container->get('jms_serializer');
