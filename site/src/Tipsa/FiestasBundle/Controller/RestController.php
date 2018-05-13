@@ -3,6 +3,7 @@
 namespace Tipsa\FiestasBundle\Controller;
 
 use Tipsa\FiestasBundle\Entity\Departamento;
+use Tipsa\FiestasBundle\Entity\Municipio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -38,7 +39,10 @@ class RestController  extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $departamentos = $em->getRepository('FiestasBundle:Departamento')->findAll();
+        $departamentos = $em->getRepository('FiestasBundle:Departamento')->findBy(
+            array(),
+            array('Departamento' => 'ASC')
+        );
 
         $serializer = $this->container->get('jms_serializer');
 
@@ -177,14 +181,24 @@ class RestController  extends Controller
      *  }
      * )
      */    
-    public function fiestaPatronalAction(Municipio $municipio)
+    public function fiestaPatronalAction(Municipio $municipio, $lang)
     {    
         $em = $this->getDoctrine()->getManager();
-
-        $fiesta = $em->getRepository('FiestasBundle:FiestaPatronal')->findBy(array(
-            'municipio_id' => $municipio->getId()
+ 
+        $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findBy(array(
+            'Municipio_id' => $municipio->getId()
         ));
-
+        $fiesta = array();
+        $source = 'es';
+        $target = $lang;
+        $trans = new GoogleTranslate();
+        
+        foreach($entities as $entity)
+        {
+            $entity->setNombre($trans->translate($source, $target, $entity->getNombre()));
+            $entity->setDescripcion($trans->translate($source, $target, $entity->getDescripcion()));
+            $fiesta[] = $entity;
+        }
         $serializer = $this->container->get('jms_serializer');
 
         return new Response($serializer->serialize($fiesta, 'json'));
@@ -224,5 +238,14 @@ class RestController  extends Controller
         $serializer = $this->container->get('jms_serializer');
 
         return new Response($serializer->serialize($fiesta, 'json'));
+    }
+
+    public function fiestasTitulosTraducciones($lang)
+    {
+        $titulos = array();
+        $titulos["principal"] = "Fiestas patronales Guatemala";
+        $titulos["departamentos"] = "Departamentos";
+        $titulos["municipios"] = "Municipios";
+        $titulos["hoy"] = "hoy";
     }
 }
