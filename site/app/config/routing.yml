@@ -40,6 +40,11 @@ municipio_fiesta_hoy:
     defaults: { _controller: FiestasBundle:Rest:fiestaPatronalHoy, _format: json, lang: es }
     methods: [GET]
 
+municipio_fiesta_mes:
+    path:  /rest/fiestaspatronales/{mes}/mes/{lang}
+    defaults: { _controller: FiestasBundle:Rest:fiestaPatronalMes, _format: json, lang: es }
+    methods: [GET]
+    
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc

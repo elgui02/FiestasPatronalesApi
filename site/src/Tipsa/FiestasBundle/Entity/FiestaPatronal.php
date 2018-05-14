@@ -17,9 +17,11 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * Tipsa\FiestasBundle\Entity\FiestaPatronal
  *
- * @ORM\Entity()
- * @ORM\Table(name="FiestaPatronal", indexes={@ORM\Index(name="fk_FiestaPatronal_Municipio1_idx", columns={"municipio_id"})})
+ * @ORM\Entity(repositoryClass="Tipsa\FiestasBundle\Entity\FiestaPatronalRepository")
+ * @ORM\Table(name="FiestaPatronal",indexes={@ORM\Index(name="fk_FiestaPatronal_Municipio1_idx", columns={"municipio_id"})})
+ *
  * @ExclusionPolicy("all")
+ *
  */
 class FiestaPatronal
 {

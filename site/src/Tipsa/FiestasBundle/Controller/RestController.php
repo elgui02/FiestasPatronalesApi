@@ -223,7 +223,7 @@ class RestController  extends Controller
     {    
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findAll();
+        $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findHoy();
         $fiesta = array();
         $source = 'es';
         $target = $lang;
@@ -239,6 +239,51 @@ class RestController  extends Controller
 
         return new Response($serializer->serialize($fiesta, 'json'));
     }
+    
+    /**
+     * Retorna las fiestas patronales del dia
+     *
+     * @ApiDoc(
+     *  section="FiestasPatronales", 
+     *  description="Obtener fiestas patronales del {mes} que se desee",
+     *  output="Tipsa\FiestasBundle\Entity\FiestaPatronal",
+     *  requirements={
+     *      {
+     *          "name"="month",
+     *          "dataType"="integer",
+     *          "requirement"="*",
+     *          "description"="numero del mes del año"
+     *      }
+     *  },
+     *  statusCodes={
+     *         200="Cuando no existe error"
+     *  },
+     *  tags={
+     *   "stable" = "#4A7023",
+     *  }
+     * )
+     */    
+    public function fiestaPatronalMesAction($mes, $lang)
+    {    
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('FiestasBundle:FiestaPatronal')->findMonth($mes);
+        $fiesta = array();
+        $source = 'es';
+        $target = $lang;
+        $trans = new GoogleTranslate();
+        
+        foreach($entities as $entity)
+        {
+            $entity->setNombre($trans->translate($source, $target, $entity->getNombre()));
+            $entity->setDescripcion($trans->translate($source, $target, $entity->getDescripcion()));
+            $fiesta[] = $entity;
+        }
+        $serializer = $this->container->get('jms_serializer');
+
+        return new Response($serializer->serialize($fiesta, 'json'));
+    }
+
 
     public function fiestasTitulosTraducciones($lang)
     {
