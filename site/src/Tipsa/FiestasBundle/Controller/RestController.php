@@ -307,9 +307,11 @@ class RestController  extends Controller
 
         $titulos = array();
         $titulos["principal"] = "Fiestas patronales Guatemala";
-        $titulos["departamentos"] = "Departamentos";
+        $titulos["departamentos"] = "Busqueda por departamentos";
+        $titulos["fecha"] = "Busqueda por fecha";
+        $titulos["buscar"] ="Buscar";
         $titulos["municipios"] = "Municipios";
-        $titulos["preferencias"] = "Ajustes";
+        $titulos["preferencias"] = "Configuración";
         $titulos["hoy"] = "Fiestas el día de hoy";
         
         foreach($meses as $key => $value)
