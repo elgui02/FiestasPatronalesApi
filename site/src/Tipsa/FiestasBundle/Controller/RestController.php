@@ -285,12 +285,46 @@ class RestController  extends Controller
     }
 
 
-    public function fiestasTitulosTraducciones($lang)
+    public function fiestasTitulosTraduccionesAction($lang)
     {
+        $source = 'es';
+        $target = $lang;
+        $trans = new GoogleTranslate();
+
+        $meses = array();
+        $meses[1] = "Enero";
+        $meses[2] = "Febrero";
+        $meses[3] = "Marzo";
+        $meses[4] = "Abril";
+        $meses[5] = "Mayo";
+        $meses[6] = "Junio";
+        $meses[7] = "Julio";
+        $meses[8] = "Agosto";
+        $meses[9] = "Septiembre";
+        $meses[10] = "Octubre";
+        $meses[11] = "Noviembre";
+        $meses[12] = "Diciembre";
+
         $titulos = array();
         $titulos["principal"] = "Fiestas patronales Guatemala";
         $titulos["departamentos"] = "Departamentos";
         $titulos["municipios"] = "Municipios";
-        $titulos["hoy"] = "hoy";
-    }
+        $titulos["preferencias"] = "Ajustes";
+        $titulos["hoy"] = "Fiestas el día de hoy";
+        
+        foreach($meses as $key => $value)
+        {
+            $meses[$key] = $trans->translate($source, $target, $value);
+        }
+        
+        foreach($titulos as $key => $value)
+        {
+            $titulos[$key] = $trans->translate($source, $target, $value);
+        }
+        $titulos["meses"] = $meses;
+
+        $serializer = $this->container->get('jms_serializer');
+
+        return new Response($serializer->serialize($titulos, 'json'));
+}
 }

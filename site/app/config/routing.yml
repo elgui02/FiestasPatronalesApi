@@ -44,6 +44,11 @@ municipio_fiesta_mes:
     path:  /rest/fiestaspatronales/{mes}/mes/{lang}
     defaults: { _controller: FiestasBundle:Rest:fiestaPatronalMes, _format: json, lang: es }
     methods: [GET]
+
+treduccion_preferencias:
+    path:  /rest/preferencias/{lang}
+    defaults: { _controller: FiestasBundle:Rest:fiestasTitulosTraducciones, _format: json, lang: es }
+    methods: [GET]
     
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
