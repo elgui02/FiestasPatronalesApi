@@ -313,6 +313,9 @@ class RestController  extends Controller
         $titulos["municipios"] = "Municipios";
         $titulos["preferencias"] = "Configuración";
         $titulos["hoy"] = "Fiestas el día de hoy";
+        $titulos["info"] = "Acerca de";
+        $titulos["espere"] = "Por favor, espere";
+        $titulos["team"] ="Equipo de desarrollo";
         
         foreach($meses as $key => $value)
         {
